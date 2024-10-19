@@ -5,7 +5,8 @@ export const styles = StyleSheet.create({
   input: {
     height: 50,
     borderColor: colors.adoptImageBg,
-    borderWidth: 1,
+    borderBottomWidth: 1,
+    borderWidth: 0,
     borderRadius: 5,
     paddingHorizontal: 10,
     marginVertical: 10,

@@ -3,15 +3,18 @@ import {StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
   button: {
-    backgroundColor: colors.Button,
-    borderRadius: 5,
-    paddingVertical: 12,
-    paddingHorizontal: 20,
-    marginVertical: 10,
+    width: 185,
+    fontFamily: 'Montserrat',
+    justifyContent: 'center',
+    alignSelf: 'center',
+    backgroundColor: colors.fText,
+    paddingVertical: 15,
+    borderRadius: 37,
+    alignItems: 'center',
   },
   buttonText: {
     color: colors.lightWhite,
-    fontSize: 16,
-    textAlign: 'center',
+    fontSize: 18,
+    fontWeight: 'bold',
   },
 });

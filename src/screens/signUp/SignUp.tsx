@@ -7,29 +7,12 @@ import Button from '../../components/button/Button';
 import GoogleButton from '../../components/googleButton/GoogleButton';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {handleGoogleSignIn} from '../../hooks/useGoogleLogin';
+import {getSignUpInputs} from '../../constants/Inputs';
 
 const SignUp = ({navigation}: {navigation: StackNavigationProp<any, any>}) => {
   const {state, handleChange, handleSignUp} = useSignUp(navigation);
 
-  const inputs = [
-    {
-      placeholder: 'Name',
-      value: state.name,
-      onChangeText: (value: string) => handleChange('name', value),
-    },
-    {
-      placeholder: 'Email',
-      value: state.email,
-      onChangeText: (value: string) => handleChange('email', value),
-      keyboardType: 'email-address' as 'email-address',
-    },
-    {
-      placeholder: 'Password',
-      value: state.password,
-      onChangeText: (value: string) => handleChange('password', value),
-      secureTextEntry: true,
-    },
-  ];
+  const inputs = getSignUpInputs(state, handleChange);
 
   return (
     <View style={styles.container}>
@@ -41,11 +24,10 @@ const SignUp = ({navigation}: {navigation: StackNavigationProp<any, any>}) => {
 
       <Button title="Sign Up" onPress={handleSignUp} />
 
-      <GoogleButton onPress={handleGoogleSignIn} />
-
       <TouchableOpacity onPress={() => navigation.navigate('Login')}>
         <Text style={styles.signupText}>Login</Text>
       </TouchableOpacity>
+      <GoogleButton onPress={handleGoogleSignIn} />
     </View>
   );
 };
