@@ -2,6 +2,7 @@ import React from 'react';
 import {View, Text, Image, TouchableOpacity} from 'react-native';
 import {styles} from './AdoptStyle';
 import useAdopt from './useAdopt';
+import {SPECIFICATIONS} from '../../constants/Constant';
 
 const AdoptScreen = () => {
   const {selectedPet, handleAdoptNow} = useAdopt();
@@ -25,39 +26,29 @@ const AdoptScreen = () => {
       </View>
       <View style={styles.detailsContainer}>
         <View style={styles.petInfo}>
-          <Text style={styles.petName}>{selectedPet?.petName}</Text>
-          <Text style={styles.price}>${selectedPet?.amount}</Text>
+          <Text style={styles.petName}>{selectedPet.petName}</Text>
+          <Text style={styles.price}>${selectedPet.amount}</Text>
         </View>
 
         <View style={styles.specificationsContainer}>
-          <View style={styles.specificationBox}>
-            <Text style={styles.specTitle}>Age</Text>
-            <Text style={styles.specValue}>{selectedPet?.petAge}</Text>
-          </View>
-          <View style={styles.specificationBox}>
-            <Text style={styles.specTitle}>Gender</Text>
-            <Text style={styles.specValue}>{selectedPet?.gender}</Text>
-          </View>
-          <View style={styles.specificationBox}>
-            <Text style={styles.specTitle}>Weight</Text>
-            <Text style={styles.specValue}>{selectedPet?.weight} Kg</Text>
-          </View>
-          <View style={styles.specificationBox}>
-            <Text style={styles.specTitle}>Vaccine</Text>
-            <Text style={styles.specValue}>{selectedPet?.vaccinated}</Text>
-          </View>
+          {SPECIFICATIONS(selectedPet).map((spec, index) => (
+            <View key={index} style={styles.specificationBox}>
+              <Text style={styles.specTitle}>{spec.title}</Text>
+              <Text style={styles.specValue}>{spec.value}</Text>
+            </View>
+          ))}
         </View>
 
         <View style={styles.ownerInfo}>
           <View style={styles.ownerAvatar}></View>
-          <Text style={styles.ownerName}>{selectedPet?.ownerId}</Text>
+          <Text style={styles.ownerName}>{selectedPet.ownerId}</Text>
           <View style={styles.locationContainer}>
             <Text style={styles.locationText}>FSD</Text>
           </View>
         </View>
 
         <Text style={styles.description}>
-          {selectedPet?.description}
+          {selectedPet.description}
           <Text style={styles.readMore}> Read More</Text>
         </Text>
 

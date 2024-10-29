@@ -9,6 +9,13 @@ const {
   setConfirmPassword,
 } = useChangePassword();
 
+export const SPECIFICATIONS = (selectedPet: any) => [
+  {title: 'Age', value: selectedPet.petAge},
+  {title: 'Gender', value: selectedPet.gender},
+  {title: 'Weight', value: `${selectedPet.weight} Kg`},
+  {title: 'Vaccine', value: selectedPet.vaccinated},
+];
+
 export const petTypes = [
   {label: 'Dogs', value: 'dogs'},
   {label: 'Cats', value: 'cats'},

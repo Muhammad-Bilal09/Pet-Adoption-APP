@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
   },
   Text: {
     marginBottom: 22,
-    fontSize: 16,
+    fontSize: 30,
   },
   avatarContainer: {
     position: 'relative',
