@@ -1,5 +1,11 @@
 import React, {useState} from 'react';
-import {View, SafeAreaView, ScrollView, TouchableOpacity} from 'react-native';
+import {
+  View,
+  SafeAreaView,
+  ScrollView,
+  TouchableOpacity,
+  Text,
+} from 'react-native';
 import {Button, TextInput, Avatar, IconButton} from 'react-native-paper';
 import useProfile from './useProfile';
 import {styles} from './ProfileStyle';
@@ -22,6 +28,7 @@ const ProfileSettingsScreen = () => {
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={styles.contentContainer}>
         <View style={styles.avatarContainer}>
+          <Text style={styles.Text}>Profile Setting</Text>
           {profileImage ? (
             <Avatar.Image
               size={100}

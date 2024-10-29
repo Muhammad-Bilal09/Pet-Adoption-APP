@@ -7,6 +7,24 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 20,
     backgroundColor: colors.lightWhite,
   },
+
+  checkboxcontainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginVertical: 20,
+  },
+  checkboxContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  text: {
+    marginLeft: 8,
+    fontSize: 16,
+  },
+  link: {
+    color: '#007AFF',
+    textDecorationLine: 'underline',
+  },
   title: {
     fontFamily: 'Montserrat',
     fontSize: 32,

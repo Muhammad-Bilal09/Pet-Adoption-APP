@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
+import CheckBox from '@react-native-community/checkbox';
 import useSignIn from './useSignIn';
 import {styles} from './SignInStyle';
 import Input from '../../components/inputs/Inputs';
@@ -10,8 +11,15 @@ import {handleGoogleSignIn} from '../../hooks/useGoogleLogin';
 import {getSignInInputs} from '../../constants/signInInputs';
 
 const SignIn = ({navigation}: {navigation: StackNavigationProp<any, any>}) => {
-  const {email, setEmail, password, setPassword, handleLogin} =
-    useSignIn(navigation);
+  const {
+    email,
+    handleCheckboxPress,
+    isChecked,
+    setEmail,
+    password,
+    setPassword,
+    handleLogin,
+  } = useSignIn(navigation);
 
   const inputs = getSignInInputs(email, setEmail, password, setPassword);
 
@@ -25,6 +33,18 @@ const SignIn = ({navigation}: {navigation: StackNavigationProp<any, any>}) => {
       <TouchableOpacity onPress={() => navigation.navigate('ForgotPassword')}>
         <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
       </TouchableOpacity>
+
+      <View style={styles.checkboxContainer}>
+        <TouchableOpacity
+          style={styles.checkboxContainer}
+          onPress={handleCheckboxPress}>
+          <CheckBox value={isChecked} onValueChange={handleCheckboxPress} />
+          <Text style={styles.text}>
+            I agree to the <Text style={styles.link}>Terms of Service</Text> and{' '}
+            <Text style={styles.link}>Privacy Policy</Text>
+          </Text>
+        </TouchableOpacity>
+      </View>
 
       <Button title="Login" onPress={handleLogin} />
 

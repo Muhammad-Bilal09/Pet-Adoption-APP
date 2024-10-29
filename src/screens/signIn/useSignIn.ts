@@ -12,6 +12,12 @@ const useSignIn = (navigation: any) => {
   const [password, setPassword] = useState('');
   const error = useSelector((state: RootState) => state?.auth?.error);
 
+  const [isChecked, setIsChecked] = useState(false);
+
+  const handleCheckboxPress = () => {
+    setIsChecked(!isChecked);
+  };
+
   const handleLogin = async () => {
     const emailError = validateEmail(email);
     const passwordError = validatePassword(password);
@@ -37,6 +43,8 @@ const useSignIn = (navigation: any) => {
     setPassword,
     error,
     handleLogin,
+    handleCheckboxPress,
+    isChecked,
   };
 };
 

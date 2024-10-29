@@ -6,6 +6,23 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingHorizontal: 20,
   },
+  checkboxcontainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginVertical: 20,
+  },
+  checkboxContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  text: {
+    marginLeft: 8,
+    fontSize: 16,
+  },
+  link: {
+    color: '#007AFF', // Adjust color for links
+    textDecorationLine: 'underline',
+  },
   title: {
     fontFamily: 'Montserrat',
     color: colors.fText,

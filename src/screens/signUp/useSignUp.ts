@@ -11,6 +11,12 @@ const useSignUp = (navigation: any) => {
   const [state, setState] = useState({name: '', email: '', password: ''});
   const error = useSelector((state: RootState) => state?.auth?.error);
 
+  const [isChecked, setIsChecked] = useState(false);
+
+  const handleCheckboxPress = () => {
+    setIsChecked(!isChecked);
+  };
+
   const handleChange = (key: keyof typeof state, value: string) => {
     setState({
       ...state,
@@ -42,6 +48,9 @@ const useSignUp = (navigation: any) => {
     state,
     handleChange,
     handleSignUp,
+    handleCheckboxPress,
+    isChecked,
+    setIsChecked,
   };
 };
 

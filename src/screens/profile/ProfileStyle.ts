@@ -8,6 +8,10 @@ export const styles = StyleSheet.create({
     padding: 20,
     flexGrow: 1,
   },
+  Text: {
+    marginBottom: 22,
+    fontSize: 16,
+  },
   avatarContainer: {
     position: 'relative',
     justifyContent: 'center',
