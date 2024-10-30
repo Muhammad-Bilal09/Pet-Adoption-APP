@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   FlatList,
   Animated,
+  ImageBackground,
   Image,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
@@ -53,19 +54,20 @@ export default function HomeScreen() {
       </Text>
     </TouchableOpacity>
   );
-
   const renderPet = ({item}: {item: Pet}) => (
     <TouchableOpacity
       style={styles.petCard}
       onPress={() => handlePetSelection(item)}>
-      <View>
-        <Text style={styles.petName}>{item?.petName}</Text>
-        <Text style={styles.petDetails}>Age: {item?.petAge}</Text>
-        <Text style={styles.petPrice}>Price: {item?.amount}$</Text>
-      </View>
-      <View>
-        <Image source={{uri: item?.imageUrl}} style={styles.petImage} />
-      </View>
+      <ImageBackground
+        source={{uri: item?.imageUrl}}
+        style={styles.petBackgroundImage}
+        imageStyle={styles.petImageStyle}>
+        <View style={styles.petInfo}>
+          <Text style={styles.petName}>{item?.petName}</Text>
+          <Text style={styles.petDetails}>Age: {item?.petAge}</Text>
+          <Text style={styles.petPrice}>Price: {item?.amount}$</Text>
+        </View>
+      </ImageBackground>
     </TouchableOpacity>
   );
 
@@ -102,8 +104,7 @@ export default function HomeScreen() {
           />
         </TouchableOpacity>
       </View>
-
-      <View>
+      <View style={styles.Pets}>
         <FlatList
           data={categories}
           horizontal
@@ -114,7 +115,6 @@ export default function HomeScreen() {
         />
 
         <Text style={styles.forYouTitle}>For you</Text>
-
         <FlatList
           data={filteredPets}
           keyExtractor={item => item?.id}
@@ -122,7 +122,6 @@ export default function HomeScreen() {
           style={styles.petList}
         />
       </View>
-
       <Animated.View
         style={[styles.menuContainer, {transform: [{translateX: slideAnim}]}]}>
         <TouchableOpacity onPress={toggleMenu}>

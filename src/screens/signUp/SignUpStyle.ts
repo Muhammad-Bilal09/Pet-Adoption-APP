@@ -17,10 +17,12 @@ export const styles = StyleSheet.create({
   },
   text: {
     marginLeft: 8,
+    marginTop: 10,
+    marginBottom: 15,
     fontSize: 16,
   },
   link: {
-    color: '#007AFF', // Adjust color for links
+    color: '#007AFF',
     textDecorationLine: 'underline',
   },
   title: {

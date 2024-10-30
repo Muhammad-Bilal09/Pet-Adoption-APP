@@ -49,16 +49,11 @@ const ProfileSettingsScreen = () => {
         <View style={styles.inputContainer}>
           <TextInput
             style={styles.input}
-            label="Username"
+            placeholder="Enter Username"
             value={newUsername}
             onChangeText={setNewUsername}
           />
-          <TextInput
-            label="Email"
-            value={email}
-            disabled
-            style={styles.emailInput}
-          />
+          <TextInput value={email} disabled style={styles.emailInput} />
         </View>
       </ScrollView>
       <View style={styles.buttonContainer}>

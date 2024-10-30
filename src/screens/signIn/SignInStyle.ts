@@ -18,6 +18,8 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   text: {
+    marginTop: 10,
+    marginBottom: 15,
     marginLeft: 8,
     fontSize: 16,
   },

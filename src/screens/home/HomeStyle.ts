@@ -37,6 +37,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     height: 62,
     paddingVertical: 8,
+    fontFamily: 'Montserrat',
     fontSize: 16,
   },
   searchIcon: {
@@ -48,7 +49,7 @@ export const styles = StyleSheet.create({
   },
   categoryList: {
     color: colors.white,
-    marginBottom: 10,
+    marginBottom: 20,
   },
   categoryCircle: {
     width: 60,
@@ -64,28 +65,25 @@ export const styles = StyleSheet.create({
   forYouTitle: {
     fontSize: 22,
     fontWeight: 'bold',
+    fontFamily: 'Montserrat',
     marginBottom: 20,
   },
   petList: {
     marginBottom: 20,
   },
-  petCard: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: 10,
-    backgroundColor: colors.categoryBg,
-    borderRadius: 20,
-    marginBottom: 10,
+  pet: {
+    marginTop: 20,
   },
+  Pets: {},
   petName: {
     fontSize: 29,
+    fontFamily: 'Montserrat',
     fontWeight: '800',
     color: colors.white,
   },
   petDetails: {
     fontSize: 14,
+    fontFamily: 'Montserrat',
     color: colors.white,
     marginVertical: 5,
   },
@@ -114,6 +112,7 @@ export const styles = StyleSheet.create({
     marginBottom: 20,
   },
   menuSearchInput: {
+    fontFamily: 'Montserrat',
     backgroundColor: colors.searchBg,
     borderRadius: 8,
     paddingHorizontal: 10,
@@ -124,6 +123,7 @@ export const styles = StyleSheet.create({
     flex: 1,
   },
   menuItem: {
+    fontFamily: 'Montserrat',
     fontSize: 18,
     paddingVertical: 15,
   },
@@ -133,6 +133,7 @@ export const styles = StyleSheet.create({
     borderColor: colors.categoryBg,
   },
   logoutText: {
+    fontFamily: 'Montserrat',
     color: 'red',
     fontSize: 18,
   },
@@ -162,5 +163,23 @@ export const styles = StyleSheet.create({
   },
   selectedCategoryText: {
     color: colors.white,
+  },
+  petCard: {
+    width: '100%',
+    height: 150,
+    marginBottom: 10,
+  },
+  petBackgroundImage: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    borderRadius: 10,
+    overflow: 'hidden',
+  },
+  petImageStyle: {
+    resizeMode: 'cover',
+  },
+  petInfo: {
+    padding: 10,
+    borderRadius: 5,
   },
 });

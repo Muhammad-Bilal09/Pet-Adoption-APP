@@ -11,6 +11,7 @@ import {Animated} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../../types/types';
+import Toast from 'react-native-toast-message';
 
 type HomeScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -92,10 +93,18 @@ export const useHome = () => {
       .signOut()
       .then(() => {
         dispatch(logout());
-        Alert.alert('Logout Successful', 'You have been logged out.');
+        Toast.show({
+          type: 'success',
+          text1: 'Logout Successful',
+          text2: 'You have been logged out.',
+        });
       })
       .catch(error => {
-        Alert.alert('Logout Failed', 'Please try again.');
+        Toast.show({
+          type: 'error',
+          text1: 'Logout Failed',
+          text2: 'Please try again.',
+        });
       });
   };
 

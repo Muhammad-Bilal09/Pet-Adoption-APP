@@ -10,7 +10,10 @@ export const styles = StyleSheet.create({
   },
   Text: {
     marginBottom: 22,
+    fontFamily: 'Montserrat',
+    color: colors.black,
     fontSize: 30,
+    fontWeight: 'bold',
   },
   avatarContainer: {
     position: 'relative',
@@ -37,12 +40,14 @@ export const styles = StyleSheet.create({
     fontSize: 16,
   },
   emailInput: {
+    fontFamily: 'Montserrat',
     marginTop: 10,
   },
   buttonContainer: {
     padding: 20,
   },
   updateButton: {
+    fontFamily: 'Montserrat',
     width: '100%',
     padding: 5,
     marginTop: 5,
@@ -51,6 +56,7 @@ export const styles = StyleSheet.create({
   changePasswordButton: {
     width: '100%',
     padding: 5,
+    fontFamily: 'Montserrat',
     backgroundColor: colors.fText,
     color: colors.white,
   },
@@ -58,7 +64,6 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 0,
     right: 130,
-
     borderRadius: 50,
   },
   iconButton: {

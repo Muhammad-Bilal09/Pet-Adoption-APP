@@ -1,9 +1,9 @@
 import {useState} from 'react';
-import {Alert} from 'react-native';
 import * as ImagePicker from 'react-native-image-picker';
 import firestore from '@react-native-firebase/firestore';
 import storage from '@react-native-firebase/storage';
 import auth from '@react-native-firebase/auth';
+import Toast from 'react-native-toast-message';
 import {petTypes, yesNoOptions, genderOptions} from '../../constants/Constant';
 
 export const useAddPet = () => {
@@ -71,13 +71,21 @@ export const useAddPet = () => {
       !description ||
       !imageUri
     ) {
-      Alert.alert('Please fill in all fields');
+      Toast.show({
+        type: 'error',
+        text1: 'Error',
+        text2: 'Please fill in all fields.',
+      });
       return;
     }
 
     const user = auth()?.currentUser;
     if (!user) {
-      Alert.alert('You must be logged in to add a pet');
+      Toast.show({
+        type: 'error',
+        text1: 'Error',
+        text2: 'You must be logged in to add a pet.',
+      });
       return;
     }
 
@@ -85,7 +93,11 @@ export const useAddPet = () => {
       const uploadedImageUrl = await uploadImage(imageUri);
 
       if (!uploadedImageUrl) {
-        Alert.alert('Image upload failed. Please try again.');
+        Toast.show({
+          type: 'error',
+          text1: 'Error',
+          text2: 'Image upload failed. Please try again.',
+        });
         return;
       }
 
@@ -98,9 +110,17 @@ export const useAddPet = () => {
       };
 
       await firestore()?.collection('pets')?.add(submissionData);
-      Alert.alert('Pet added successfully');
+      Toast.show({
+        type: 'success',
+        text1: 'Success',
+        text2: 'Pet added successfully!',
+      });
     } catch (error) {
-      Alert.alert('Error adding pet. Please try again.');
+      Toast.show({
+        type: 'error',
+        text1: 'Error',
+        text2: 'Error adding pet. Please try again.',
+      });
     }
   };
 

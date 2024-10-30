@@ -11,6 +11,7 @@ export const colors = {
   adoptImageBg: '#ccc',
   fText: '#101C1D',
   fBg: '#f5f5f5',
+  black: '#000000',
   authButton: '#007BFF',
   searchBg: '#F3F4F6',
   categoryBg: '#E5E7EB',

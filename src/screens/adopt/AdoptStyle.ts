@@ -37,6 +37,7 @@ export const styles = StyleSheet.create({
     borderTopRightRadius: 30,
   },
   petName: {
+    fontFamily: 'Montserrat',
     fontSize: 24,
     fontWeight: 'bold',
     color: '#333',
@@ -60,6 +61,7 @@ export const styles = StyleSheet.create({
   },
   specTitle: {
     fontSize: 14,
+    fontFamily: 'Montserrat',
     color: colors.bColor,
   },
   specValue: {
@@ -80,6 +82,7 @@ export const styles = StyleSheet.create({
   },
   ownerName: {
     fontSize: 16,
+    fontFamily: 'Montserrat',
     fontWeight: 'bold',
   },
   locationContainer: {
@@ -92,6 +95,7 @@ export const styles = StyleSheet.create({
     color: colors.bColor,
   },
   description: {
+    fontFamily: 'Montserrat',
     marginTop: 20,
     color: colors.description,
   },
@@ -113,6 +117,7 @@ export const styles = StyleSheet.create({
   },
   noPet: {
     flex: 1,
+    fontFamily: 'Montserrat',
     justifyContent: 'center',
     alignItems: 'center',
   },

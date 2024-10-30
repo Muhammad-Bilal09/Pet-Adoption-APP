@@ -2,8 +2,8 @@ import {useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {changePassword} from '../../redux/slice/authSlice';
 import {RootState, AppDispatch} from '../../redux/store';
-import {Alert} from 'react-native';
 import {unwrapResult} from '@reduxjs/toolkit';
+import Toast from 'react-native-toast-message';
 
 const useChangePassword = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -14,7 +14,11 @@ const useChangePassword = () => {
 
   const handleChangePassword = async () => {
     if (newPassword !== confirmPassword) {
-      Alert.alert('Error', 'Passwords do not match');
+      Toast.show({
+        type: 'error',
+        text1: 'Error',
+        text2: 'Passwords do not match',
+      });
       return;
     }
 
@@ -23,9 +27,17 @@ const useChangePassword = () => {
         changePassword({currentPassword, newPassword}),
       );
       unwrapResult(resultAction);
-      Alert.alert('Success', 'Password updated successfully');
+      Toast.show({
+        type: 'success',
+        text1: 'Success',
+        text2: 'Password updated successfully!',
+      });
     } catch (error) {
-      Alert.alert('Error', 'Failed to update password.');
+      Toast.show({
+        type: 'error',
+        text1: 'Error',
+        text2: 'Failed to update password.',
+      });
     }
   };
 

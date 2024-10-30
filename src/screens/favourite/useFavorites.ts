@@ -5,12 +5,13 @@ import firestore from '@react-native-firebase/firestore';
 import {RootState} from '../../redux/store';
 import {removeFavorite, setFavorites} from '../../redux/slice/favoritesSlice';
 import {Pet} from '../../types/types';
+import Toast from 'react-native-toast-message';
 
 export const useFavorites = () => {
   const favorites = useSelector(
     (state: RootState) => state?.favorites?.favorites,
   );
-  const user = useSelector((state: RootState) => state.auth.user);
+  const user = useSelector((state: RootState) => state?.auth?.user);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -19,9 +20,9 @@ export const useFavorites = () => {
 
       try {
         const userFavoritesRef = firestore()
-          .collection('users')
-          .doc(user?.id)
-          .collection('favorites');
+          ?.collection('users')
+          ?.doc(user?.id)
+          ?.collection('favorites');
 
         const snapshot = await userFavoritesRef?.get();
 
@@ -44,8 +45,11 @@ export const useFavorites = () => {
 
         dispatch(setFavorites(allFavorites));
       } catch (error) {
-        console.error('Error fetching favorites:', error);
-        Alert.alert('Error fetching favorites');
+        Toast.show({
+          type: 'error',
+          text1: 'Error',
+          text2: 'Could not fetch favorites. Please try again.',
+        });
       }
     };
 

@@ -2,7 +2,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {useState} from 'react';
 import {loginUser} from '../../redux/slice/authSlice';
 import {RootState, AppDispatch} from '../../redux/store';
-import {Alert} from 'react-native';
+import Toast from 'react-native-toast-message';
 import {unwrapResult} from '@reduxjs/toolkit';
 import {validateEmail, validatePassword} from '../../utils/Validation';
 
@@ -23,7 +23,11 @@ const useSignIn = (navigation: any) => {
     const passwordError = validatePassword(password);
 
     if (emailError || passwordError) {
-      Alert.alert('Error', `${emailError || ''} ${passwordError || ''}`);
+      Toast.show({
+        type: 'error',
+        text1: 'Error',
+        text2: `${emailError || ''} ${passwordError || ''}`,
+      });
       return;
     }
 
@@ -32,7 +36,11 @@ const useSignIn = (navigation: any) => {
       const unwrappedResult = unwrapResult(resultAction);
       navigation.navigate('Home');
     } catch (rejectedAction: any) {
-      Alert.alert('Error', rejectedAction.error.message || 'Login failed');
+      Toast.show({
+        type: 'error',
+        text1: 'Error',
+        text2: rejectedAction.error.message || 'Login failed',
+      });
     }
   };
 

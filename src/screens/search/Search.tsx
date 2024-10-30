@@ -6,10 +6,13 @@ import {
   TouchableOpacity,
   FlatList,
   Image,
+  StyleSheet,
 } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import useSearch from './useSearch';
 import {styles} from './SearchStyle';
+import {useHome} from '../home/useHome';
+import {Pet} from '../../types/types';
 
 export default function SearchScreen() {
   const {
@@ -23,27 +26,33 @@ export default function SearchScreen() {
     handleToggleFavorite,
   } = useSearch();
 
-  const renderPet = ({item}: any) => {
+  const {handlePetSelection} = useHome();
+
+  const renderPet = ({item}: {item: Pet}) => {
     const isFavorite = favorites?.some(favPet => favPet?.id === item?.id);
 
     return (
       <View style={[styles.petCard, isFavorite && styles.favoritedPetCard]}>
-        <View>
-          <Text style={styles.petName}>{item?.petName}</Text>
-          <Text style={styles.petDetails}>Age: {item?.petAge}</Text>
-          <Text style={styles.petPrice}>Price: {item?.amount}$</Text>
-        </View>
-        <Image source={{uri: item?.imageUrl}} style={styles.petImage} />
-
         <TouchableOpacity
-          onPress={() => {
-            handleToggleFavorite(item);
-          }}>
-          <FontAwesome
-            name={isFavorite ? 'heart' : 'heart-o'}
-            size={30}
-            color={isFavorite ? 'red' : 'gray'}
-          />
+          onPress={() => handlePetSelection(item)}
+          style={styles.touchableContainer}>
+          <Image source={{uri: item?.imageUrl}} style={styles.petImage} />
+          <View style={styles.petInfoContainer}>
+            <View>
+              <Text style={styles.petName}>{item?.petName}</Text>
+              <Text style={styles.petDetails}>Age: {item?.petAge}</Text>
+              <Text style={styles.petPrice}>Price: {item?.amount}$</Text>
+            </View>
+            <View>
+              <TouchableOpacity onPress={() => handleToggleFavorite(item)}>
+                <FontAwesome
+                  name={isFavorite ? 'heart' : 'heart-o'}
+                  size={30}
+                  color={isFavorite ? 'red' : 'gray'}
+                />
+              </TouchableOpacity>
+            </View>
+          </View>
         </TouchableOpacity>
       </View>
     );

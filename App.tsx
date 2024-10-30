@@ -4,6 +4,8 @@ import {Provider} from 'react-redux';
 import {store} from './src/redux/store';
 import {Platform} from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
+import Toast from 'react-native-toast-message';
+
 const App = () => {
   useEffect(() => {
     if (Platform.OS === 'android') SplashScreen.hide();
@@ -13,6 +15,7 @@ const App = () => {
       <Provider store={store}>
         <AuthNavigation />
       </Provider>
+      <Toast />
     </>
   );
 };

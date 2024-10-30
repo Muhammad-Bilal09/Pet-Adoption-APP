@@ -1,8 +1,8 @@
 import {useState} from 'react';
-import {Alert} from 'react-native';
 import * as ImagePicker from 'react-native-image-picker';
 import firestore from '@react-native-firebase/firestore';
 import storage from '@react-native-firebase/storage';
+import Toast from 'react-native-toast-message';
 import {
   petTypes,
   yesNoOption,
@@ -36,8 +36,8 @@ export const useDonatePet = () => {
     };
 
     ImagePicker.launchImageLibrary(options, response => {
-      if (response?.assets && response.assets?.length > 0) {
-        handleChange('imageUri', response?.assets[0]?.uri || null);
+      if (response?.assets && response.assets.length > 0) {
+        handleChange('imageUri', response.assets[0]?.uri || null);
       }
     });
   };
@@ -46,17 +46,22 @@ export const useDonatePet = () => {
     if (!uri) return null;
 
     const uploadUri = uri;
-    const fileName = uploadUri?.substring(uploadUri?.lastIndexOf('/') + 1);
-    const storageRef = storage()?.ref(`pets/${fileName}`);
+    const fileName = uploadUri.substring(uploadUri.lastIndexOf('/') + 1);
+    const storageRef = storage().ref(`pets/${fileName}`);
     setUploading(true);
 
     try {
-      const task = storageRef?.putFile(uploadUri);
+      const task = storageRef.putFile(uploadUri);
       await task;
 
-      const downloadURL = await storageRef?.getDownloadURL();
+      const downloadURL = await storageRef.getDownloadURL();
       return downloadURL;
     } catch (error) {
+      Toast.show({
+        type: 'error',
+        text1: 'Error',
+        text2: 'Failed to upload image. Please try again.',
+      });
       return null;
     } finally {
       setUploading(false);
@@ -75,7 +80,11 @@ export const useDonatePet = () => {
       !description ||
       !imageUri
     ) {
-      Alert.alert('Please fill in all fields');
+      Toast.show({
+        type: 'error',
+        text1: 'Missing Information',
+        text2: 'Please fill in all fields.',
+      });
       return;
     }
 
@@ -83,20 +92,32 @@ export const useDonatePet = () => {
       const uploadedImageUrl = await uploadImage(imageUri);
 
       if (!uploadedImageUrl) {
-        Alert.alert('Image upload failed. Please try again.');
+        Toast.show({
+          type: 'error',
+          text1: 'Image Upload Failed',
+          text2: 'Please try again.',
+        });
         return;
       }
 
       const submissionData = {
         ...formData,
         imageUrl: uploadedImageUrl,
-        createdAt: firestore?.FieldValue?.serverTimestamp(),
+        createdAt: firestore.FieldValue.serverTimestamp(),
       };
 
-      await firestore()?.collection('pets')?.add(submissionData);
-      Alert.alert('Pet added successfully');
+      await firestore().collection('pets').add(submissionData);
+      Toast.show({
+        type: 'success',
+        text1: 'Pet Added',
+        text2: 'Your pet donation has been added successfully!',
+      });
     } catch (error) {
-      Alert.alert('Error adding pet. Please try again.');
+      Toast.show({
+        type: 'error',
+        text1: 'Submission Error',
+        text2: 'There was an error adding your pet. Please try again.',
+      });
     }
   };
 
